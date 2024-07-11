@@ -96,12 +96,12 @@ GROUP BY
   a."VanID",
   a."FirstName",
   a."LastName",
+  e."Phone",
   a."DateCreated",
   b."Amount",
   c."Nickname",
   "Recurring",
   d."RecurringAmount",
-  e."Phone",
   "ContactSource",
   h."ActivistCodeName"
 SQL;
