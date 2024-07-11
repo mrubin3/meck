@@ -13,20 +13,17 @@ if (!$conn) {
 if (!empty($_GET['customer_id'])) {
   $customer_id = pg_escape_string($_GET['customer_id']);
   $filter = "a.\"VanID\" = '$customer_id'";
-  //$filter = 'a."VanID"='.$_GET['customer_id'];
 } elseif (!empty($_GET['first_name'])) {
   $first_name = pg_escape_string($_GET['first_name']);
   $filter = "a.\"FirstName\" = '$first_name'";
-  //$filter = 'a."FirstName"='.$_GET['first_name'];
 } elseif (!empty($_GET['last_name'])) {
   $last_name = pg_escape_string($_GET['last_name']);
   $filter = "a.\"LastName\" = '$last_name'";
-  //$filter = 'a."LastName"='.$_GET['last_name'];
 } elseif (!empty($_GET['phone'])) {
   $phone = pg_escape_string($_GET['phone']);
   $filter = "e.\"Phone\" = '$phone'";
-  //$filter = 'e."Phone"='.$_GET['phone'];
-}
+} 
+  
 
 
 $sql = <<<SQL
