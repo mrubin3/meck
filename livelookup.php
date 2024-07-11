@@ -26,8 +26,6 @@ if (!empty($_GET['customer_id'])) {
   $phone = pg_escape_string($_GET['phone']);
   $filter = "e.\"Phone\" = '$phone'";
   //$filter = 'e."Phone"='.$_GET['phone'];
-} else {
-  $filter = '1=0';
 }
 
 
