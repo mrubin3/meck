@@ -111,7 +111,7 @@ $result = pg_query($conn, $sql);
 
 
 header('Content-type: text/xml');
-echo '<?xml version="1.0" encoding="ISO-8859-1"'."?".">\n";
+echo '<?xml version="1.0" encoding="utf-8"'."?".">\n";
 ?>
 <livelookup version="1.0" columns="first_name, last_name, phone">
   <?php while ($row = pg_fetch_assoc($result)): ?>
