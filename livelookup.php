@@ -84,7 +84,8 @@ LEFT JOIN
 ON
   g."ActivistCodeID" = h."ActivistCodeID"
 WHERE
-  a."LastName" IS NOT NULL
+  $filter
+  AND a."LastName" IS NOT NULL
   AND a."FirstName" IS NOT NULL
   AND ( (h."ActivistCodeName" = '23-25 SEC Member')
     OR (h."ActivistCodeName" = '23-25 Pct Chair')
@@ -93,7 +94,6 @@ WHERE
     OR (h."ActivistCodeName" = '23-25 Pct S/T')
     OR (h."ActivistCodeName" = '23 Elected Official')
     OR (h."ActivistCodeName" IS NULL))
-  AND $filter
 GROUP BY
   a."VanID",
   a."FirstName",
