@@ -24,7 +24,10 @@ if (!empty($_GET['customer_id'])) {
   $filter = "e.\"Phone\" = '$phone'";
 } 
   
-
+if (empty($filter)) {
+    echo '<error>No valid filter provided.</error>';
+    exit;  // Stop further execution if no valid filter is set
+}
 
 $sql = <<<SQL
 
