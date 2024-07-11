@@ -13,9 +13,6 @@ if (!$conn) {
 if (!empty($_GET['customer_id'])) {
   $customer_id = pg_escape_string($_GET['customer_id']);
   $filter = "a.\"VanID\" = '$customer_id'";
-} elseif (!empty($_GET['first_name'])) {
-  $first_name = pg_escape_string($_GET['first_name']);
-  $filter = "a.\"FirstName\" = '$first_name'";
 } elseif (!empty($_GET['last_name'])) {
   $last_name = pg_escape_string($_GET['last_name']);
   $filter = "a.\"LastName\" = '$last_name'";
@@ -33,7 +30,6 @@ $sql = <<<SQL
 
 SELECT
   a."VanID",
-  a."FirstName",
   a."LastName",
   e."Phone"
 FROM
@@ -45,7 +41,6 @@ ON
 WHERE
   $filter
   AND a."LastName" IS NOT NULL
-  AND a."FirstName" IS NOT NULL
 SQL;
 $result = pg_query($conn, $sql);
 
@@ -57,11 +52,10 @@ if (!$result) {
 header('Content-type: text/xml');
 echo '<?xml version="1.0" encoding="utf-8"'."?".">\n";
 ?>
-<livelookup version="1.0" columns="first_name, last_name, phone">
+<livelookup version="1.0" columns="customer_id, last_name">
   <?php while ($row = pg_fetch_assoc($result)): ?>
   <customer>
     <customer_id><?php echo $row['VanID'];?></customer_id>
-    <first_name><?php echo $row['FirstName'];?></first_name>
     <last_name><?php echo $row['LastName'];?></last_name>
     <phone><?php echo $row['Phone'];?></phone>
   </customer>
