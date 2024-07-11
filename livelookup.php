@@ -35,12 +35,12 @@ SELECT
   a."VanID",
   a."FirstName",
   a."LastName",
+  e."Phone",
   a."DateCreated",
   b."Amount",
   c."Nickname",
   d."RecurringContributionStatusID" AS "Recurring",
   d."RecurringAmount",
-  e."Phone",
   f."ContactSourceName" AS "ContactSource",
   h."ActivistCodeName"
 FROM
