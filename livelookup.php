@@ -35,75 +35,17 @@ SELECT
   a."VanID",
   a."FirstName",
   a."LastName",
-  e."Phone",
-  a."DateCreated",
-  b."Amount",
-  c."Nickname",
-  d."RecurringContributionStatusID" AS "Recurring",
-  d."RecurringAmount",
-  f."ContactSourceName" AS "ContactSource",
-  h."ActivistCodeName"
+  e."Phone"
 FROM
   "ngpsync"."Contacts" AS a
-LEFT JOIN
-  (SELECT
-    "VanID",
-    SUM("Amount") AS "Amount"
-  FROM
-    "ngpsync"."ContactsContributions"
-  WHERE
-    DATE("DateReceived") >= CURRENT_DATE - INTERVAL '1 year' --filters TO WITHIN LAST year
-  GROUP BY
-    "VanID" ) AS b
-ON
-  a."VanID" = b."VanID"
-LEFT JOIN
-  "ngpsync"."ContactsAdditionalContactInformation" AS c
-ON
-  a."VanID" = c."VanID"
-LEFT JOIN
-  "ngpsync"."ContactsRecurringContributions" AS d
-ON
-  a."VanID" = d."VanID"
 LEFT JOIN
   "ngpsync"."ContactsPhones" AS e
 ON
   a."VanID" = e."VanID"
-LEFT JOIN
-  "ngpsync"."ContactSources" AS f
-ON
-  a."ContactSourceID" = f."ContactSourceID"
-LEFT JOIN
-  "ngpsync"."ContactsActivistCodes" AS g
-ON
-  a."VanID" = g."VanID"
-LEFT JOIN
-  "ngpsync"."ActivistCodes" AS h
-ON
-  g."ActivistCodeID" = h."ActivistCodeID"
 WHERE
   $filter
   AND a."LastName" IS NOT NULL
   AND a."FirstName" IS NOT NULL
-  AND ( (h."ActivistCodeName" = '23-25 SEC Member')
-    OR (h."ActivistCodeName" = '23-25 Pct Chair')
-    OR (h."ActivistCodeName" = '23-25 Vice Pct Chair')
-    OR (h."ActivistCodeName" = '23-25 CEC Member')
-    OR (h."ActivistCodeName" = '23-25 Pct S/T')
-    OR (h."ActivistCodeName" = '23 Elected Official')
-    OR (h."ActivistCodeName" IS NULL))
-GROUP BY
-  a."VanID",
-  a."FirstName",
-  a."LastName",
-  e."Phone",
-  a."DateCreated",
-  b."Amount",
-  c."Nickname",
-  "Recurring",
-  d."RecurringAmount",
-  "ContactSource",
-  h."ActivistCodeName"
 SQL;
 $result = pg_query($conn, $sql);
 
@@ -113,4 +55,15 @@ if (!$result) {
 }
 
 header('Content-type: text/xml');
-echo $filter;
+echo '<?xml version="1.0" encoding="utf-8"'."?".">\n";
+?>
+<livelookup version="1.0" columns="first_name, last_name, phone">
+  <?php while ($row = pg_fetch_assoc($result)): ?>
+  <customer>
+    <customer_id><?php echo $row['VanID'];?></customer_id>
+    <first_name><?php echo $row['FirstName'];?></first_name>
+    <last_name><?php echo $row['LastName'];?></last_name>
+    <phone><?php echo $row['Phone'];?></phone>
+  </customer>
+  <?php endwhile; ?>
+</livelookup>    
