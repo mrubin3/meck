@@ -113,22 +113,4 @@ if (!$result) {
 }
 
 header('Content-type: text/xml');
-echo '<?xml version="1.0" encoding="utf-8"'."?".">\n";
-?>
-<livelookup version="1.0" columns="first_name, last_name, phone">
-  <?php while ($row = pg_fetch_assoc($result)): ?>
-  <customer>
-    <customer_id><?php echo $row['VanID'];?></customer_id>
-    <first_name><?php echo $row['FirstName'];?></first_name>
-    <last_name><?php echo $row['LastName'];?></last_name>
-    <phone><?php echo $row['Phone'];?></phone>
-    <Custom14><?php echo $row['DateCreated'];?></Custom14>
-    <Custom11><?php echo $row['Amount'];?></Custom11>
-    <Custom19><?php echo $row['Nickname'];?></Custom19>
-    <Custom15><?php echo $row['Recurring'];?></Custom15>
-    <Custom20><?php echo $row['RecurringAmount'];?></Custom20>
-    <Custom13><?php echo $row['ContactSource'];?></Custom13>
-    <Custom18><?php echo $row['ActivistCodeName'];?></Custom18>
-  </customer>
-  <?php endwhile; ?>
-</livelookup>
+echo $filter;
