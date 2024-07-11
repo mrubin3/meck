@@ -107,6 +107,10 @@ GROUP BY
 SQL;
 $result = pg_query($conn, $sql);
 
+if (!$result) {
+    echo '<error>Query execution failed.</error>';
+    exit;
+}
 
 header('Content-type: text/xml');
 echo '<?xml version="1.0" encoding="utf-8"'."?".">\n";
