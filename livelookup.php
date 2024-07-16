@@ -53,8 +53,8 @@ echo '<?xml version="1.0" encoding="utf-8"'.'?'.'>\n';
 ?>
 <livelookup version="1.0" columns="customer_id, last_name">
   <customer>
-    <customer_id><?php echo test1;?></customer_id>
-    <last_name><?php echo test2;?></last_name>
-    <phone><?php echo test3;?></phone>
+    <customer_id><?php echo 'test1';?></customer_id>
+    <last_name><?php echo 'test2';?></last_name>
+    <phone><?php echo 'test3';?></phone>
   </customer>
 </livelookup>    
