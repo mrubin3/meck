@@ -52,11 +52,9 @@ header('Content-type: text/xml');
 echo '<?xml version="1.0" encoding="utf-8"'."?".">\n";
 ?>
 <livelookup version="1.0" columns="customer_id, last_name">
-  <?php while ($row = pg_fetch_assoc($result)): ?>
   <customer>
-    <customer_id><?php echo $row['VanID'];?></customer_id>
-    <last_name><?php echo $row['LastName'];?></last_name>
-    <phone><?php echo $row['Phone'];?></phone>
+    <customer_id><?php echo test1;?></customer_id>
+    <last_name><?php echo test2;?></last_name>
+    <phone><?php echo test3;?></phone>
   </customer>
-  <?php endwhile; ?>
 </livelookup>    
