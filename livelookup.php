@@ -21,10 +21,10 @@ if (!empty($_GET['customer_id'])) {
   $filter = "e.\"Phone\" = '$phone'";
 } 
   
-if (empty($filter)) {
-    echo '<error>No valid filter provided.</error>';
-    exit;  // Stop further execution if no valid filter is set
-}
+//if (empty($filter)) {
+//    echo '<error>No valid filter provided.</error>';
+//    exit;  // Stop further execution if no valid filter is set
+//}
 
 $sql = <<<SQL
 
@@ -43,13 +43,13 @@ WHERE
 SQL;
 $result = pg_query($conn, $sql);
 
-if (!$result) {
-    echo '<error>Query execution failed.</error>';
-    exit;
-}
+//if (!$result) {
+//    echo '<error>Query execution failed.</error>';
+//    exit;
+//}
 
 header('Content-type: text/xml');
-echo '<?xml version="1.0" encoding="utf-8" ?>';
+echo '<?xml version="1.0" encoding="utf-8"?>';
 ?>
 <livelookup version="1.0" columns="customer_id, last_name">
   <customer>
