@@ -39,8 +39,7 @@ LEFT JOIN
 ON
   a."VanID" = e."VanID"
 WHERE
-  $filter
-  AND a."LastName" IS NOT NULL
+  a."LastName" IS NOT NULL
 SQL;
 $result = pg_query($conn, $sql);
 
