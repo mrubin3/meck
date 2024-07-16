@@ -1,47 +1,47 @@
 <?php
-$db_host = "34.41.141.8";
-$db_user = "ngp";
-$db_password = "pfq@qeb!DTD8czx3hrw";
-$db_name = "meckdems_ngp";
+//$db_host = "34.41.141.8";
+//$db_user = "ngp";
+//$db_password = "pfq@qeb!DTD8czx3hrw";
+//$db_name = "meckdems_ngp";
 
-$conn = pg_connect("host=$db_host dbname=$db_name user=$db_user password=$db_password");
+//$conn = pg_connect("host=$db_host dbname=$db_name user=$db_user password=$db_password");
 
-if (!$conn) {
-  echo '<error>Could not connect to the database.</error>';
-}
+//if (!$conn) {
+//  echo '<error>Could not connect to the database.</error>';
+//}
 
-if (!empty($_GET['customer_id'])) {
-  $customer_id = pg_escape_string($_GET['customer_id']);
-  $filter = "a.\"VanID\" = '$customer_id'";
-} elseif (!empty($_GET['last_name'])) {
-  $last_name = pg_escape_string($_GET['last_name']);
-  $filter = "a.\"LastName\" = '$last_name'";
-} elseif (!empty($_GET['phone'])) {
-  $phone = pg_escape_string($_GET['phone']);
-  $filter = "e.\"Phone\" = '$phone'";
-} 
+//if (!empty($_GET['customer_id'])) {
+//  $customer_id = pg_escape_string($_GET['customer_id']);
+//  $filter = "a.\"VanID\" = '$customer_id'";
+//} elseif (!empty($_GET['last_name'])) {
+//  $last_name = pg_escape_string($_GET['last_name']);
+//  $filter = "a.\"LastName\" = '$last_name'";
+//} elseif (!empty($_GET['phone'])) {
+//  $phone = pg_escape_string($_GET['phone']);
+//  $filter = "e.\"Phone\" = '$phone'";
+//} 
   
 //if (empty($filter)) {
 //    echo '<error>No valid filter provided.</error>';
 //    exit;  // Stop further execution if no valid filter is set
 //}
 
-$sql = <<<SQL
+//$sql = <<<SQL
 
-SELECT
-  a."VanID",
-  a."LastName",
-  e."Phone"
-FROM
-  "ngpsync"."Contacts" AS a
-LEFT JOIN
-  "ngpsync"."ContactsPhones" AS e
-ON
-  a."VanID" = e."VanID"
-WHERE
-  a."LastName" IS NOT NULL
-SQL;
-$result = pg_query($conn, $sql);
+//SELECT
+//  a."VanID",
+//  a."LastName",
+//  e."Phone"
+//FROM
+//  "ngpsync"."Contacts" AS a
+//LEFT JOIN
+//  "ngpsync"."ContactsPhones" AS e
+//ON
+//  a."VanID" = e."VanID"
+//WHERE
+//  a."LastName" IS NOT NULL
+//SQL;
+//$result = pg_query($conn, $sql);
 
 //if (!$result) {
 //    echo '<error>Query execution failed.</error>';
