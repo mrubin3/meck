@@ -1,6 +1,6 @@
 <?php
 header('Content-type: text/xml');
-echo '<?xml version="1.0" encoding="utf-8"?>';
+echo '<?xml version="1.0" encoding="ISO-8859-1"'."?".">\n";
 ?>
 <livelookup version="1.0" columns="customer_id,last_name">
   <customer>
